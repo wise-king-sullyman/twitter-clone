@@ -1,0 +1,2 @@
+class Qweet < ApplicationRecord
+end
