@@ -14,7 +14,7 @@ class QweetsController < ApplicationController
 
   # GET /qweets/new
   def new
-    @qweet = Qweet.new
+    @qweet = current_user.qweets.build
   end
 
   # GET /qweets/1/edit
@@ -23,7 +23,7 @@ class QweetsController < ApplicationController
 
   # POST /qweets or /qweets.json
   def create
-    @qweet = Qweet.new(qweet_params)
+    @qweet = current_user.qweets.build(qweet_params)
 
     respond_to do |format|
       if @qweet.save
