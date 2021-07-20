@@ -4,6 +4,7 @@ class QweetsController < ApplicationController
   # GET /qweets or /qweets.json
   def index
     @qweets = Qweet.all
+    @qweet = Qweet.new
   end
 
   # GET /qweets/1 or /qweets/1.json

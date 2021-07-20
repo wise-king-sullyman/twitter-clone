@@ -1,27 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Qweets</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Qweet</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @qweets.each do |qweet| %>
-      <tr>
-        <td><%= qweet.qweet %></td>
-        <td><%= link_to 'Show', qweet %></td>
-        <td><%= link_to 'Edit', edit_qweet_path(qweet) %></td>
-        <td><%= link_to 'Destroy', qweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Qweet', new_qweet_path %>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <%= render 'trends' %>
+      <%= render 'feed' %>
+      <%= render 'who-to-follow' %>
+    </div>
+  </div>
+</section>

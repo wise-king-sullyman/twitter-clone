@@ -1,22 +1,9 @@
-<%= form_with(model: qweet) do |form| %>
-  <% if qweet.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(qweet.errors.count, "error") %> prohibited this qweet from being saved:</h2>
-
-      <ul>
-        <% qweet.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= simple_form_for(@qweet) do |f| %>
+  <%= f.error_notification %>
   <div class="field">
-    <%= form.label :qweet %>
-    <%= form.text_area :qweet %>
+    <div class="control">
+      <%= f.input :qweet, label: "Just Qweet it", input_html: { class: "textarea"}, wrapper: false, label_html: {class: "label"}, placeholder: "Compse a new Qweet..." %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= f.button :submit, class: "button is-info" %>
 <% end %>
