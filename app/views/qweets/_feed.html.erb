@@ -1,22 +1,24 @@
 <div class="column is-half">
-  <article class="media box">
-    <figure class="media-left">
-      <p class="image is-64x64">
-        <img src="https://bulma.io/images/placeholders/64x64.png">
-      </p>
-    </figure>
+  <% if user_signed_in? %>
+    <article class="media box">
+      <figure class="media-left">
+        <p class="image is-64x64">
+          <%= gravatar_image_tag(current_user.email, size: 64, alt: current_user.name) %>
+        </p>
+      </figure>
 
-    <div class="media-content">
-      <%= render 'qweets/form' %>
-    </div>
-  </article>
+      <div class="media-content">
+        <%= render 'qweets/form' %>
+      </div>
+    </article>
+  <% end %>
 
   <% @qweets.reverse_each do |qweet| %>
     <div class="box">
       <article class="media">
         <div class="media-left">
           <figure class="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/64x64.png">
+            <%= gravatar_image_tag(qweet.user.email, size: 64, alt: qweet.user.name) %>
           </figure>
         </div>
         <div class="media-content">
@@ -25,21 +27,24 @@
             <small>@<%= qweet.user.username %></small>
             <p><%= qweet.qweet %></p>
           </div>
-          <nav class="level">
-            <div class="level-left is-mobile">
-              <%= link_to qweet, class: "level-item" do %>
-                <span class="icon"><i class="fa fa-link" aria-hidden="true"></i></span>
-              <% end %>
 
-              <%= link_to edit_qweet_path(qweet), class: "level-item" do %>
-                <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-              <% end %>
+          <% if user_signed_in? %>
+            <nav class="level">
+              <div class="level-left is-mobile">
+                <%= link_to qweet, class: "level-item" do %>
+                  <span class="icon"><i class="fa fa-link" aria-hidden="true"></i></span>
+                <% end %>
 
-              <%= link_to qweet, method: :delete, data: { confirm: "Are you sure you want to qwit this qweet?"} do %>
-                <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-              <% end %>
-            </div>
-          </nav>
+                <%= link_to edit_qweet_path(qweet), class: "level-item" do %>
+                  <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                <% end %>
+
+                <%= link_to qweet, method: :delete, data: { confirm: "Are you sure you want to qwit this qweet?"} do %>
+                  <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                <% end %>
+              </div>
+            </nav>
+        <% end %>
         </div>
       </article>
     </div>
